@@ -1,0 +1,7 @@
+<mat-form-field>
+    <input placeholder="{{action}} Name" matInput [(ngModel)]="local_data.quantidade">
+</mat-form-field>
+<mat-dialog-actions>
+  <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</mat-dialog-actions>

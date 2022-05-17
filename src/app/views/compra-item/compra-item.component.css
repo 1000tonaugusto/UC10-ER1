@@ -16,9 +16,8 @@
   }
   
           body {
-            height: 197.5rem;
             height: auto;
-            background: radial-gradient(38.71% 136.09% at 50.71% 0%, rgba(88, 173, 215, 0.8) 0%, rgba(46, 48, 47, 0.8) 90.36%);
+            /* background: radial-gradient(38.71% 136.09% at 50.71% 0%, rgba(88, 173, 215, 0.8) 0%, rgba(46, 48, 47, 0.8) 90.36%); */
           }
           
           #barraTitulo {
@@ -101,6 +100,11 @@
             font-family: fontEmail;
             color:#1b1b1b;
         }
+
+        #botaoIncluirCar {
+          margin-bottom: 1%;
+          width: 100%;
+        }
           
           @media (min-width: 768px) {
             .bd-placeholder-img-lg {
@@ -129,4 +133,22 @@
 #tituloitem {
     font-family: fontEmail;
     color:#1b1b1b;
+}
+
+.inputOculto {
+  display: none;
+  width: 1%;
+}
+
+::ng-deep .mat-snack-bar-container{
+  color: #eff0ef !important;
+  background-color: #1c1d1c !important;
+  border-color: #c3e6cb !important;
+}
+::ng-deep .mat-simple-snackbar-action {
+  color: red;
+}
+
+a {
+  text-decoration: none;
 }

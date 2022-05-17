@@ -1,19 +1,52 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { CarrinhoService } from 'src/app/services/carrinho.service';
+import { Carrinho } from 'src/app/models/carrinho';
+import { ProdutoService } from 'src/app/services/produto.service';
+import { AppformularioComponent } from '../appformulario/appformulario.component';
 
 @Component({
   selector: 'app-compra-item',
   templateUrl: './compra-item.component.html',
   styleUrls: ['./compra-item.component.css']
 })
+
 export class CompraItemComponent implements OnInit {
 
-  constructor() { }
+  carrinho: Carrinho = {
+    id: '',
+    nome: '',
+    urlImagem: '',
+    preco: '',
+    quantidade: ''
+  }
+  
+
+  constructor(private carrinhoService: CarrinhoService,
+              private produtoService: ProdutoService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.renderizar()
+    //this.carregaForm()
+
+  }
+
+  criarCarrinho(): void {
+      let varNome = document.getElementById("tituloItem")!.textContent
+      let varPreco = document.getElementById("preco")!.textContent
+      let varUrlImagem = document.getElementById("urlImagem")!.textContent
+      this.carrinho.nome = varNome!;
+      this.carrinho.preco = varPreco!;
+      this.carrinho.urlImagem = varUrlImagem!;
+      this.carrinho.quantidade = "1"!;
+      this.carrinhoService.adicionarCarrinho(this.carrinho).subscribe(() =>
+      this.carrinhoService.mostraMensagem('Item adicionado ao carrinho!'))
   }
 
   renderizar() {
+
     let listaProdutos = [
         {
             idProduto: '1',
@@ -154,26 +187,19 @@ export class CompraItemComponent implements OnInit {
     
         let produtoEncontrado = listaProdutos.find( produto => produto.idProduto == myParam)!;
         modeloDescricao += `<div class="d-flex align-items-center p-3 lg-3">
-                                <div class="col-lg-2">
-                                    <img class="imagemProduto justify-content-center img-fluid rounded"
-                                    src="${produtoEncontrado.urlImagem}">
-                                </div>
-                                <div class="col-lg-7">
-                                    <h2 id="tituloItem">${produtoEncontrado.nome}</h2>
-                                    <p class="textoItem">Fabricante:  ${produtoEncontrado.fabricante}</p>
-                                    <p class="textoItem">${produtoEncontrado.descricao}</p>
-                                </div>
-                                <div class="col-lg-3">
-                                    <h3 class="text-center textoItem">${produtoEncontrado.preco}</h3>
-                                    <p class="text-center textoItem">Ou em até 10x sem juros</p>
-                                    <form>
-                                        <label class="textoItem">Calcular frete:</label>
-                                        <input type="text">
-                                        <button>Ok</button>
-                                    </form>
-                                </div>
-                         </div>`;
+                            <div class="col-lg-2">
+                            <img class="imagemProduto justify-content-center img-fluid rounded"
+            src="${produtoEncontrado.urlImagem}" id="urlImagem">
+        </div>
+        <div class="col-lg-7">
+            <h2 id="tituloItem">${produtoEncontrado.nome}</h2>
+            <p class="textoItem">Fabricante:  ${produtoEncontrado.fabricante}</p>
+            <p class="textoItem">${produtoEncontrado.descricao}</p>
+        </div>
+        <div class="col-lg-3">
+            <h3 id="preco" class="text-center textoItem" [(ngModel)]="carrinho.preco">${produtoEncontrado.preco}</h3>
+        </div>
+ </div>`;
                          quadroDescricao.innerHTML = modeloDescricao;
     }
-
 }

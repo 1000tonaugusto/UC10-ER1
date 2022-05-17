@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-4 text-end">
                 <a href="#" id="botaoUsuario"><img class="img-fluid" id="iconeUsuario" src="./assets/img/icones/user_32x32.png"></a>
-                <img class="img-fluid" id="iconeCarrinho" src="./assets/img/icones/carrinho_32x32.png">
+                <a [routerLink]="['carrinho/']"><img class="img-fluid" id="iconeCarrinho" src="./assets/img/icones/carrinho_32x32.png"></a>
             </div>
         </div>
     </div>
@@ -45,7 +45,6 @@
         </div>
       </div>
     </nav>
-
 </header>
 
 <main>
@@ -124,14 +123,38 @@
         <h1>NOVIDADES</h1>
       </div>
       <div class="row" id="quadroNovidades">
+        <div class="col-lg-3 quadroItem" *ngFor="let novidade of listaNovidades">
+          <div class="quadroItemDentro">
+              <a [routerLink]="['compraitem/']" [queryParams]="{idProduto: [novidade.id]}"><img class="imagemProduto img-fluid rounded mx-auto d-block"
+                      src="{{novidade.urlImagem}}"></a>
+              <p class="text-center">{{novidade.nome}}</p>
+              <p class="text-center preco">R$ {{novidade.preco}}</p>
+          </div>
+        </div>
       </div>
-    
+
       <div class="d-flex align-items-center p-3 my-3 text-white tituloSecao">
         <h1>PROMOÇÕES</h1>
       </div>
       <div class="row" id="quadroPromocoes1">
+        <div class="col-lg-3 quadroItem" *ngFor="let promocoes1 of listaPromocoes1">
+          <div class="quadroItemDentro">
+              <a [routerLink]="['compraitem/']" [queryParams]="{idProduto: [promocoes1.id]}"><img class="imagemProduto img-fluid rounded mx-auto d-block"
+                      src="{{promocoes1.urlImagem}}"></a>
+              <p class="text-center">{{promocoes1.nome}}</p>
+              <p class="text-center preco">R$ {{promocoes1.preco}}</p>
+          </div>
+        </div>
       </div>
       <div class="row" id="quadroPromocoes2">
+        <div class="col-lg-3 quadroItem" *ngFor="let promocoes2 of listaPromocoes2">
+          <div class="quadroItemDentro">
+              <a [routerLink]="['compraitem/']" [queryParams]="{idProduto: [promocoes2.id]}"><img class="imagemProduto img-fluid rounded mx-auto d-block"
+                      src="{{promocoes2.urlImagem}}"></a>
+              <p class="text-center">{{promocoes2.nome}}</p>
+              <p class="text-center preco">R$ {{promocoes2.preco}}</p>
+          </div>
+        </div>
       </div>
     </div>
     <div id="dialog-message" title="E-mail cadastrado">

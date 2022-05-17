@@ -1,4 +1,9 @@
-# Uc9sa3er1
+# Uc10-ER1
+
+Implementado CRUD:
+Quando é selecionado um item é pesquisado as informações daquele item (READ);
+No momento do clique para comprar um item, ele é adicionado ao carrinho (CREATE);
+Na tela do carrinho de compras há a possibilidade de excluir itens (DELETE).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
 
